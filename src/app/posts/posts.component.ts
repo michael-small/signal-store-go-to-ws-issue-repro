@@ -17,19 +17,12 @@ import { pipe, switchMap, tap } from 'rxjs';
 
 export interface PostsStateInterface {
   posts: PostInterface[];
-  isLoading: boolean;
-  error: string | null;
 }
 
 export const PostsStore = signalStore(
   withState<PostsStateInterface>({
     posts: [],
-    error: null,
-    isLoading: false,
   }),
-  withComputed((store) => ({
-    postsCount: computed(() => store.posts().length),
-  })),
   withMethods((store, postsService = inject(PostsService)) => ({
     addPost(title: string) {
       const newPost: PostInterface = {
@@ -58,11 +51,6 @@ export const PostsStore = signalStore(
       )
     ),
   })),
-  withHooks({
-    onInit(store) {
-      store.loadPosts();
-    },
-  })
 );
 
 @Component({
