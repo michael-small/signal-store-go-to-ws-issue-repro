@@ -1,27 +1,23 @@
-# App
+# Go to Definition in Webstorm with NGRX Signal Store Issue Reproduction
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+Source repo: https://github.com/monsterlessonsacademy/monsterlessonsacademy/tree/413-ngrx-signals
 
-## Development server
+## Issue: When going to the definition of a method (Go to Definition, F12, control click etc), rather than go to the method declaration in the signal store, it goes to some internal ngrx signal store package file in `node_modules`
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Recreate
 
-## Code scaffolding
+1) Checkout `main` 
+2) Open `src/app/posts/posts.component.ts`
+3) Go to line 96: `this.store.addPost(this.addForm.getRawValue().title);`
+4) `Go to Declaration` the `addPosts` method
+5) On my PC and Macbook, it goes to a file `ts-helpers.d.ts`.
+   - A node modules path from inside signal store, `node_modules/@ngrx/signals/src/ts-helpers.d.ts`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Interesting case where it works as intended
 
-## Build
+## Recreate
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1) Checkout `works-for-some-reason`
+2) Open `src/app/posts/posts.component.ts`
+3) Go to line 96: `this.store.addPost(this.addForm.getRawValue().title);`
+4) `Go to Declaration` the `addPosts` method
