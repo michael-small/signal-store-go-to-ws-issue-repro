@@ -33,6 +33,10 @@ At some size small enough for the whole store in lines it just kind of works.
 4) `Go to Declaration` the `addPosts` method
 5) On my PC and Macbook, it goes to the correct spot where `addPosts` is declared
 
+## Edits of more things that occur to me as relevant
+
+- Same issue when the store is in a different file, though I did not check if it was size related
+
 ## Specs
 
 Please DM @MichaelSmallDev on Twitter
